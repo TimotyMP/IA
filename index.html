@@ -11,30 +11,30 @@
                 console.log("Modelo cargado...");
             })();
 
-            function cambiarCelsius() {
-                var celsius = document.getElementById("celcius").value;
-                document.getElementById("lbl-celsius").innerHTML=celsius+"\u00B0";
-                if(modelo!=null){
-                    var tensor = tf.tensor1d([parseFloat(celsius)]);
+            function convertirDias() {
+                var dias = document.getElementById("dias").value;
+                document.getElementById("lbl-dias").innerHTML = dias + " dias";
+                if(modelo != null){
+                    var tensor = tf.tensor1d([parseFloat(dias)]);
                     var prediccion = modelo.predict(tensor).dataSync();
                     prediccion = Math.round(prediccion);
 
                     document.getElementById("resultado").innerHTML = 
-                        celsius + "\u00B0 Celsius son " + prediccion + "\u00B0 Fahrenheit!";
+                        dias + " dias son aproximadamente " + prediccion + " semanas!";
                 }
             }
         </script>
     </head>
     <body>
         <div class="container p-4 bg-light rounded">
-            <h1 class="text-center mb-4">Convertidor de Celsius a Fahrenheit</h1>
+            <h1 class="text-center mb-4">Convertidor de Dias a Semanas</h1>
             <div class="mb-3 text-center">
-                <label for="celcius" class="form-label">Grados Celsius</label>
-                <input type="number" class="form-control mx-auto" style="width: 200px;" id="celcius" placeholder="Ingrese los grados Celsius">
+                <label for="dias" class="form-label">Dias</label>
+                <input type="number" class="form-control mx-auto" style="width: 200px;" id="dias" placeholder="Ingrese la cantidad de dias">
             </div>
-            <button class="btn btn-primary mb-3 d-block mx-auto" onclick="cambiarCelsius()">Convertir</button>
+            <button class="btn btn-primary mb-3 d-block mx-auto" onclick="convertirDias()">Convertir</button>
             <div class="text-center">
-                <h2 id="lbl-celsius"></h2>
+                <h2 id="lbl-dias"></h2>
                 <h2 id="resultado"></h2>
             </div>
         </div>
